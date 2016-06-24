@@ -17,5 +17,6 @@ npm run dev
 
 Abri tu browser y navega: `http://localhost:3000`
 
+Ante algun problema: cristian.bietti @ globant dot com
 
 Enjoy!
