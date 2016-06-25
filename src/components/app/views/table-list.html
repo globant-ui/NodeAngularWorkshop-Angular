@@ -1,0 +1,19 @@
+<table>
+    <thead>
+        <tr>
+            <th ng-repeat="column in $ctrl.columns track by $index">
+                {{column[1]}}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in $ctrl.data track by item.id">
+            <td ng-repeat="column in $ctrl.columns track by $index">
+                <a ng-if="$index === 0"
+                    href="./{{$ctrl.type}}/{{item.id}}/">{{item[column[0]]}}</a>
+                <span ng-if="$index !== 0">{{item[column[0]]}}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!-- <pre>{{$ctrl.data | json}}</pre> -->
