@@ -1,12 +1,21 @@
 export class CommentsController {
     commentField = '';
 
-    constructor ($routeParams) {
+    constructor ($routeParams, $route, ApiService) {
         this.routeParams = $routeParams;
+        this.route = $route;
+        this.ApiService = ApiService;
     }
 
     onSubmit () {
         let trackId = this.routeParams.trackId;
+        this.ApiService.postCommentForTrack(trackId, {
+            message: this.commentField
+        })
+        .then(response => {
+            this.route.reload();
+            return response.data;
+        });
     }
 }
 

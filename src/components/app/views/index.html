@@ -1,4 +1,5 @@
-<table-list type="band"
-    columns="name:Name, foundedDate:Founded, endDate:Ended">
+<table-list type="band" filter paginate="1"
+    columns="name:Name, foundedDate:Founded, endDate:Ended"
+    data="$resolve.data">
 </table-list>
 <!-- <pre>{{$resolve.data | json}}</pre> -->

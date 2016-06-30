@@ -1,12 +1,14 @@
 <div class="comments-container">
-    <!--  -->
-    <!-- COMMENTS LIST -->
-    <!--  -->
-    <hr />
+    <ul>
+        <li ng-repeat="comment in $ctrl.data track by comment._id">
+            <span class="date">{{comment.ts | date:'d/M/yyyy'}}</span>
+            <span class="comment">{{comment.message}}</span>
+        </li>
+    </ul>
 
     <div class="post">
-        <form>
-            <textarea></textarea>
+        <form ng-submit="$ctrl.onSubmit()">
+            <textarea ng-model="$ctrl.commentField" name="comment"></textarea>
             <button type="submit">Submit</button>
         </form>
     </div>

@@ -14,6 +14,34 @@ export class PaginationController {
     $onInit() {
         this.paginate();
     }
+
+
+    nextPage() {
+        let nextPage = this.currentPage + 1;
+
+        if (nextPage <= this.lastPage) {
+            this.currentPage = nextPage;
+            this.paginate();
+        }
+    }
+
+    prevPage() {
+        let prevPage = this.currentPage - 1;
+
+        if (prevPage > 0) {
+            this.currentPage = prevPage;
+            this.paginate();
+        }
+    }
+
+    paginate() {
+        let start = (this.currentPage - 1) * this.pageSize;
+        let end = this.currentPage * this.pageSize;
+
+        this.data = this.originalData.slice(start, end);
+        console.debug('PaginationController.paginate',
+            this.currentPage, this.lastPage, this.data);
+    }
 }
 
 

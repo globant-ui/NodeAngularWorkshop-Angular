@@ -1,7 +1,5 @@
 import 'angular-route';
 
-import {bands} from './services/mock-data';
-
 
 
 export function routes($routeProvider, $locationProvider) {
@@ -16,26 +14,34 @@ export function routes($routeProvider, $locationProvider) {
         .when('/', {
             templateUrl: '/components/app/views/index.html',
             resolve: {
-                // use resolve to to pass data to the template under $resolve
-                data: () => new Promise(resolve => resolve(bands)), // mock data
+                data: ApiService => ApiService.getBands()
             },
         })
         .when('/band/:bandId/', {
             templateUrl: '/components/app/views/band-detail.html',
             resolve: {
-                // use resolve to to pass data to the template under $resolve
+                data: ($route, ApiService) =>
+                    ApiService.getBand($route.current.params.bandId),
             },
         })
         .when('/band/:bandId/album/:albumId/', {
             templateUrl: '/components/app/views/band-detail.html',
             resolve: {
-                // use resolve to to pass data to the template under $resolve
+                data: ($route, ApiService) =>
+                    ApiService.getBand($route.current.params.bandId),
+                selectedAlbum: ($route, ApiService) =>
+                    ApiService.getAlbum($route.current.params.albumId),
             },
         })
         .when('/band/:bandId/album/:albumId/track/:trackId/', {
             templateUrl: '/components/app/views/band-detail.html',
             resolve: {
-                // use resolve to to pass data to the template under $resolve
+                data: ($route, ApiService) =>
+                    ApiService.getBand($route.current.params.bandId),
+                selectedAlbum: ($route, ApiService) =>
+                    ApiService.getAlbum($route.current.params.albumId),
+                comments: ($route, ApiService) =>
+                    ApiService.getCommentsForTrack($route.current.params.trackId),
             },
         });
 }

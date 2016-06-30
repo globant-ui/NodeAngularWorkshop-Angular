@@ -1,0 +1,34 @@
+<div class="vertical-list-container">
+    <pagination ng-if="$ctrl.paginate"
+        size="$ctrl.paginate" data="$ctrl.data"></pagination>
+
+    <ul>
+        <li ng-repeat="item in $ctrl.data track by item._id">
+            <img />
+
+            <h3 ng-if="item.firstName || item.lastName">
+                {{ item.firstName }} {{ item.lastName }}</h2>
+            <h3 ng-if="item.name">
+                <a href="./album/{{ item._id }}/">{{ item.name }}</a>
+            </h3>
+
+            <dl class="extra-info">
+                <dt ng-if="item.firstName || item.lastName">Name</dt>
+                <dd ng-if="item.firstName || item.lastName">
+                    {{ item.firstName }} {{ item.lastName }}
+                </dd>
+
+                <dt ng-if="item.birthdate">Birthday</dt>
+                <dd ng-if="item.birthdate">{{ item.birthdate }}</dd>
+
+                <dt ng-if="item.instrument">Instrument</dt>
+                <dd ng-if="item.instrument">{{ item.instrument }}</dd>
+
+                <dt ng-if="item.releaseDate">Release Date</dt>
+                <dd ng-if="item.releaseDate">{{ item.releaseDate }}</dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+
+<!-- <pre>{{$ctrl.data | json}}</pre> -->
